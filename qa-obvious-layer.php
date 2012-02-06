@@ -13,24 +13,15 @@ function q_list_item($q_item)
 		if(qa_opt('obvious_content_on'))
 		{
 				$userid = qa_get_logged_in_userid();
-				$tag_imp = Array();
-				//select the tag_id in favorites
-				$tag_id = qa_db_query_raw("SELECT entityid FROM qa_userfavorites  WHERE userid ='".$userid."' AND entitytype ='T'");
-				$tags = qa_db_read_all_values($tag_id);
-				//transform the tag_id in word and save it in tag_imp array
-				foreach($tags as $k => $v){
-				$tags_name = qa_db_query_raw("SELECT word FROM qa_words  WHERE wordid ='".$v."'");
-				$tag = qa_db_read_all_values($tags_name);
-				$tag_imp[$k] = $tag[0]; 
-				}
-				
+				$fav_tags = qa_db_single_select(qa_db_user_favorite_tags_selectspec($userid));
+				//print_r($test);
+				foreach($fav_tags as $k => $v)
+				$tag[$k] =  $v['word'];
 				//compare the two array
 				$post_tags = explode(",", $q_item['raw']['tags']);
-				$result = array_diff($tag_imp, $post_tags);
-				//print_r($tag_imp);
-				//print_r( $post_tags);
+				$result = array_diff($tag, $post_tags);
 				// if it has tag in common add is_favorite in the classes
-				if(sizeof($result) != sizeof($tag_imp) && $tag_imp)
+				if(sizeof($result) != sizeof($tag) && $tag)
 				@$q_item['classes'] .= " is_favorite";
 				}
 				qa_html_theme_base::q_list_item($q_item);// call back through to the default function
