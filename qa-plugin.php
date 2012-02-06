@@ -21,7 +21,7 @@ if (!defined('QA_VERSION')) { // don't allow this page to be requested directly 
 	
 qa_register_plugin_layer('qa-obvious-layer.php', 'Obvious Layer');
 qa_register_plugin_module('module', 'qa-obvious-admin-form.php', 'qa_obvious_admin_form', 'Obvious Favorite Tag');
-
+qa_register_plugin_module('widget', 'qa-favorite-tags.php', 'qa_tag_favorite', 'Favorite Tags');
 /*
 	Omit PHP closing tag to help avoid accidental output
 */

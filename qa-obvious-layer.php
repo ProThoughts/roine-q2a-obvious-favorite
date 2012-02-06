@@ -12,6 +12,7 @@ function q_list_item($q_item)
 		{
 		if(qa_opt('obvious_content_on'))
 		{
+				require_once QA_INCLUDE_DIR.'qa-db-selects.php';
 				$userid = qa_get_logged_in_userid();
 				$fav_tags = qa_db_single_select(qa_db_user_favorite_tags_selectspec($userid));
 				//print_r($test);
