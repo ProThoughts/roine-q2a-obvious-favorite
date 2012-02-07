@@ -1,13 +1,13 @@
 <?php
 
-	if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser
-		header('Location: ../');
-		exit;
-	}
+if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser
+header('Location: ../');
+exit;
+}
 
 class qa_tag_favorite{
 
-function allow_template($template)
+	function allow_template($template)
 	{
 		switch ($template)
 		{
@@ -25,29 +25,29 @@ function allow_template($template)
 			case 'users':
 			case 'search':
 			case 'admin':
-				return true;
+			return true;
 		}
 
 		return false;
 	}
-	
+
 	function allow_region($region){
 		return $region == 'side';
 	}
-	
+
 	function output_widget($region, $place, $themeobject, $template, $request, $qa_content)
 	{
-	require_once QA_INCLUDE_DIR.'qa-db-selects.php';
+		require_once QA_INCLUDE_DIR.'qa-db-selects.php';
 		$favoritetags = qa_db_single_select(qa_db_user_favorite_tags_selectspec(qa_get_logged_in_userid()) );
 		$themeobject->output('<span class="qa-nav-cat-list qa-nav-cat-link">Favorite Tags</span><br>');
 		foreach($favoritetags as $k => $v)
 		{
 			if($k == qa_opt('obvious_max_tags'))
-			break;
-		$tag = $v['word'];
-		$count = $v['tagcount'];
-		$question = $count > 1 ? 'questions' : 'question';
-		$themeobject->output('<a href="' . qa_path_html('tag/'.$tag).'" class="qa-tag-link" title="Tagged in '.$count.' '.$question.'">' . qa_html($tag) . '</a>');
+				break;
+			$tag = $v['word'];
+			$count = $v['tagcount'];
+			$question = $count > 1 ? 'questions' : 'question';
+			$themeobject->output('<a href="' . qa_path_html('tag/'.$tag).'" class="qa-tag-link" title="Tagged in '.$count.' '.$question.'">' . qa_html($tag) . '</a>');
 		}
 	}
 }
