@@ -2,8 +2,8 @@
 
 /*
 	Plugin Name: Obvious
-	Plugin URI: https://github.com/roine/q2a-obvious-favorite-tags
-	Plugin Description: Allow to automatically change the background color of a question if contain a favorite tag for current user
+	Plugin URI: https://github.com/roine/roine-q2a-obvious-favorite
+	Plugin Description: Allow to automatically change the background color of a question if contain a favorite tag or category for current user
 	Plugin Version: 1.0
 	Plugin Date: 2012-02-06
 	Plugin Author: jonathan de Montalembert
@@ -11,7 +11,7 @@
 	Plugin License: GPLv3
 	Plugin Minimum Question2Answer Version: 1.5
 	Plugin Minimum PHP Version: 5
-	Plugin Update Check URI: https://github.com/roine/q2a-obvious-favorite-tags
+	Plugin Update Check URI: https://github.com/roine/roine-q2a-obvious-favorite
 */
 
 if (!defined('QA_VERSION')) { // don't allow this page to be requested directly from browser

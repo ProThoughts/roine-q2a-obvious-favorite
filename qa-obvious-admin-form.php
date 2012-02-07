@@ -13,6 +13,8 @@ class qa_obvious_admin_form{
 			return '#FFEFC6';
 			case 'obvious_max_tags':
 			return '10';
+				case 'obvious_content_category_color':
+				return '#FFEFC6';
 			default:
 			return null;
 		}
@@ -26,6 +28,8 @@ class qa_obvious_admin_form{
 			qa_opt('obvious_content_on', (bool)qa_post_text('obvious_content_on'));
 			qa_opt('obvious_content_color', (string)qa_post_text('obvious_content_color'));
 			qa_opt('obvious_max_tags', (int)qa_post_text('obvious_max_tags'));
+			qa_opt('obvious_content_category_on', (bool)qa_post_text('obvious_content_category_on'));
+			qa_opt('obvious_content_category_color', (string)qa_post_text('obvious_content_category_color'));
 			$ok = qa_lang('admin/options_saved');
 		}
 		else if (qa_clicked('obvious_reset_button')) {
@@ -49,11 +53,23 @@ class qa_obvious_admin_form{
 			'value' => qa_opt('obvious_content_color'),
 			'type' => 'string',
 			);
+			$fields[] = array(
+				'label' => 'Enable Obvious Favorite Category',
+				'tags' => 'NAME="obvious_content_category_on"',
+				'value' => qa_opt('obvious_content_category_on'),
+				'type' => 'checkbox',
+				);	
+			$fields[] = array(
+				'label' => 'Your color in Hex',
+				'tags' => 'NAME="obvious_content_category_color"',
+				'value' => qa_opt('obvious_content_category_color'),
+				'type' => 'string',
+				);
 		$fields[] = array(
 			'type' => 'blank',
 			);
 		$fields[] = array(
-			'label' => 'Maximum tags',
+			'label' => 'Maximum tags for the Widget',
 			'tags' => 'NAME="obvious_max_tags"',
 			'value' => qa_opt('obvious_max_tags'),
 			'type' => 'int',
