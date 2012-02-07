@@ -42,9 +42,12 @@ function allow_template($template)
 		$themeobject->output('<span class="qa-nav-cat-list qa-nav-cat-link">Favorite Tags</span><br>');
 		foreach($favoritetags as $k => $v)
 		{
+			if($k == qa_opt('obvious_max_tags'))
+			break;
 		$tag = $v['word'];
-		
-		$themeobject->output('<a href="' . qa_path_html('tag/'.$tag).'" class="qa-tag-link">' . qa_html($tag) . '</a><br>');
+		$count = $v['tagcount'];
+		$question = $count > 1 ? 'questions' : 'question';
+		$themeobject->output('<a href="' . qa_path_html('tag/'.$tag).'" class="qa-tag-link" title="Tagged in '.$count.' '.$question.'">' . qa_html($tag) . '</a>');
 		}
 	}
 }
