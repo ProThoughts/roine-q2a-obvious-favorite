@@ -11,7 +11,7 @@ class qa_html_theme_layer extends qa_html_theme_base {
 	function q_list_item($q_item)
 	{
 		$userid = qa_get_logged_in_userid();
-		if(qa_opt('obvious_content_on'))
+		if(qa_opt('obvious_content_on') && $userid)
 		{
 			require_once QA_INCLUDE_DIR.'qa-db-selects.php';
 			$fav_tags = qa_db_single_select(qa_db_user_favorite_tags_selectspec($userid));
@@ -22,7 +22,7 @@ class qa_html_theme_layer extends qa_html_theme_base {
 			if(sizeof($result) != sizeof($tag) && $tag)
 				@$q_item['classes'] .= " is_favorite";
 		}
-		if(qa_opt('obvious_content_category_on'))
+		if(qa_opt('obvious_content_category_on') && $userid)
 		{
 			require_once QA_INCLUDE_DIR.'qa-db-selects.php';
 			$fav_cats = qa_db_single_select(qa_db_user_favorite_categories_selectspec($userid));
